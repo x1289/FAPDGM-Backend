@@ -1,0 +1,48 @@
+{
+	"blockchaininfo": {
+		"blocks": 738478,
+		"difficulty": 29897409688833.63,
+		"verificationprogress": 0.99,
+		"sizeondisk": 464393256444,
+		"bestblockhash": "0000000000000000000720cfac8c2ae069bc7eadb05285113047f34926a41f1c"
+	},
+	"block": {
+		"confirmations": 1,
+		"size": 1560805,
+		"merkleroot": "57074fce5c70084aadc1cc6bced5f600feb17da6ec08d21af80d66886a752214",
+		"nonce": 1000303913,
+		"nTx": 2965
+	},
+	"chaintxstats": {
+		"count": 737400730,
+		"blockcount": 4320,
+		"txrate": 3.002490318543417,
+		"minutesperblock": 10
+	},
+	"mempoolinfo": {
+		"size": 2377,
+		"minfee": 0.00001,
+		"totalfee": 0.06163703
+	},
+	"uptime": 1041227,
+	"price": {
+		"coinbase": {
+			"usd": 29143.9,
+			"eur": 27153.43,
+			"gbp": 23086.8,
+			"jpy": 3707404
+		},
+		"kraken": {
+			"usd": 29138.3,
+			"eur": 27159.7,
+			"gbp": 23086.8,
+			"jpy": 3714753
+		},
+		"binance": {
+			"usd": 29148.6,
+			"eur": 27189.8,
+			"gbp": 23137.4,
+			"jpy": 3707095
+		}
+	}
+}
