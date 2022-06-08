@@ -3,6 +3,9 @@ const cors = require('cors');
 const app = express()
 const port = 8080
 
+const init = require('./src/handleData.js');
+
+init();
 app.use(cors());
 
 const defaultValues = require('./default.json');
