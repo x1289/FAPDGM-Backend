@@ -1,17 +1,26 @@
+//#region bitcoin data
+const { getBlockchainInfo, getBlock, getChainTXStats, getMempoolInfo, getUptime } = require('./bitcoin-node/bitcoinNode.js');
+//#endregion
+//#region exchange data
 const getCoinBaseData = require('./exchanges/coinbase.js');
 const getKrakenData = require('./exchanges/kraken.js');
 const getBinanceData = require('./exchanges/binance.js');
+//#endregion exchange data
+
+require('dotenv').config()
 
 async function requestBitcoinNodeData() {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(undefined);
-    }, 3000);
+  const blockchainInfoPromise = getBlockchainInfo()
+  .then(async (blockchaininfo) => {
+    const bestBlockHash = blockchaininfo?.blockchaininfo?.bestblockhash;
+    const block = await getBlock(bestBlockHash);
+    return {blockchaininfo: blockchaininfo.blockchaininfo, block: block.block}
   })
+  return Promise.all([blockchainInfoPromise, getChainTXStats(), getMempoolInfo(), getUptime()]);
 }
 
 function parseBitcoinNodeData(bitcoinNodeData) {
-  return {"entry": "bitcoin-node", ...bitcoinNodeData};
+  return bitcoinNodeData;
 }
 
 async function requestData() {
@@ -24,6 +33,12 @@ async function requestData() {
       if (validEntries.includes(entryName)) {
         delete entry.entry;
         result[entryName] = entry;
+      } else {
+        entry.forEach((key) => {
+          Object.keys(key).forEach((k) => {
+            if (validEntries.includes(k)) result[k] = key[k];
+          })
+        })
       }
     });
   return result;
