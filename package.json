@@ -20,6 +20,7 @@
   "homepage": "https://github.com/x1289/FAPDGM-Backend#readme",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.18.1"
+    "express": "^4.18.1",
+    "fs-extra": "^10.1.0"
   }
 }

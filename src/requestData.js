@@ -15,7 +15,18 @@ function parseBitcoinNodeData(bitcoinNodeData) {
 }
 
 async function requestData() {
-  return await Promise.all([parseBitcoinNodeData(await requestBitcoinNodeData()), parseExchangeData(await requestExchangeData())]);
+  const requestedData = await Promise.all([parseBitcoinNodeData(await requestBitcoinNodeData()), parseExchangeData(await requestExchangeData())]);
+  const result = {};
+  const validEntries = ['blockchaininfo', 'block', 'chaintxstats', 'mempoolinfo', 'uptime', 'price'];
+  if (!requestedData) return;
+  requestedData.forEach((entry) => {
+      const entryName = entry?.entry;
+      if (validEntries.includes(entryName)) {
+        delete entry.entry;
+        result[entryName] = entry;
+      }
+    });
+  return result;
 }
 
 async function requestExchangeData() {
