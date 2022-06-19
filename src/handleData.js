@@ -32,7 +32,7 @@ function init(emitter) {
       .then((data) => {
         updateLocalDataFile(emitter, data);
       })
-    }, 3000); 
+    }, 10000); 
   }
 }
 
